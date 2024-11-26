@@ -28,3 +28,22 @@ A tener en cuenta:
 Siempre habrá un paso de diferencia o ninguno.
 La modificación puede ocurrir en cualquier lugar de la cadena.
 La secuencia original puede estar vacía */
+
+function findNaughtyStep(original, modified) {
+    if (original === modified) {
+      return '';
+    }
+    
+    for (let i = 0; i < modified.length; i++) {
+      if (original[i] !== modified[i]) {
+        return modified[i];
+      }
+    }
+    
+    return modified[modified.length - 1];
+  }
+  
+  
+  console.log(findNaughtyStep('abcd', 'abcde')); // 'e'
+  console.log(findNaughtyStep('stepfor', 'stepor')); // 'f'
+  console.log(findNaughtyStep('abcde', 'abcde')); // ''

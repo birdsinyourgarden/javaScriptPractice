@@ -23,3 +23,33 @@ Notas:
 Las cadenas de entrada siempre estarán bien formadas con paréntesis que coinciden correctamente, no necesitas validarlos.
 En el mensaje final no deben quedar paréntesis.
 El nivel máximo de anidamiento es 2. */
+
+function decode(str) {
+    let stack = []; 
+    let result = ''; 
+    
+    for (let char of str) {
+      if (char === ')') {
+        let temp = '';
+        while (stack.length > 0 && stack[stack.length - 1] !== '(') {
+          temp = stack.pop() + temp; 
+        }
+        stack.pop(); 
+        for (let ch of temp) {
+          stack.push(ch);
+        }
+      } else {
+        stack.push(char);
+      }
+    }
+    
+    while (stack.length > 0) {
+      result = stack.pop() + result;
+    }
+  
+    return result;
+  }
+  
+  console.log(decode('hola (odnum)')); 
+  console.log(decode('(olleh) (dlrow)!')); 
+  console.log(decode('sa(u(cla)atn)s')); 
